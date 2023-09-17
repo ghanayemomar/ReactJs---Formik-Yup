@@ -3,7 +3,6 @@ import React from "react";
 
 function CustomInput({ label, ...props }) {
   const [field, meta] = useField(props);
-  console.log(meta);
   return (
     <>
       <label>{label}</label>
