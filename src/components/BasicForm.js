@@ -1,16 +1,25 @@
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
+import basicSchema from "./../schemas/index";
+
+const onSubmit = () => {
+  console.log("Hello World");
+};
 
 const BasicForm = () => {
-  const { values, handleBlur, handleChange } = useFormik({
-    initialValues: {
-      email: "",
-      age: "",
-      password: "",
-      confirmPassword: "",
-    },
-  });
+  const { values, handleBlur, errors, touched, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+        age: "",
+        password: "",
+        confirmPassword: "",
+      },
+      validationSchema: basicSchema,
+      onSubmit,
+    });
+
   return (
-    <form autoComplete="off">
+    <form onSubmit={handleSubmit} autoComplete="off">
       <label htmlFor="email">Email</label>
       <input
         id="email"
@@ -19,6 +28,7 @@ const BasicForm = () => {
         value={values.email}
         onChange={handleChange}
         onBlur={handleBlur}
+        className={errors.email && touched.email ? "input-error" : ""}
       />
 
       <label htmlFor="age">Age</label>
@@ -29,6 +39,7 @@ const BasicForm = () => {
         value={values.age}
         onChange={handleChange}
         onBlur={handleBlur}
+        className={errors.age && touched.age ? "input-error" : ""}
       />
 
       <label htmlFor="password">Password</label>
@@ -39,6 +50,7 @@ const BasicForm = () => {
         value={values.password}
         onChange={handleChange}
         onBlur={handleBlur}
+        className={errors.password && touched.password ? "input-error" : ""}
       />
 
       <label htmlFor="ConfirmPassword">Confirm Password</label>
@@ -49,6 +61,7 @@ const BasicForm = () => {
         value={values.confirmPassword}
         onChange={handleChange}
         onBlur={handleBlur}
+        className={errors.confirmPassword && touched.confirmPassword ? "input-error" : ""}
       />
       <button type="submit">Submit</button>
     </form>
