@@ -1,5 +1,5 @@
-import { Formik, useFormik } from "formik";
-import basicSchema from "./../schemas/index";
+import { useFormik } from "formik";
+import { basicSchema } from "../schemas";
 
 const onSubmit = async (values, action) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
